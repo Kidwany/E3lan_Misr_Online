@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Hash;
+use Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -36,4 +39,33 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    
+    
+    
+    
+        public function login(Request $request)
+    {
+
+
+          $validator = \Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required'
+             ]);
+
+            if($validator->fails()) {
+
+                return redirect()
+                ->back()
+                ->withInput($request->all())
+                ->withErrors($validator, 'error');
+                }
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'custom_id' => 1,'verified'=>1])) {
+            return redirect()->route('e3lan-misr-admin')->with('message', 'This account activated !');
+        }  else {
+            return redirect()->route('login')->with('error', 'This account is not activated !');
+        }
+
+    }
+
+    
 }

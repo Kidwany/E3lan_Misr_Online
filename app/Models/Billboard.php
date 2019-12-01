@@ -18,7 +18,21 @@ class Billboard extends Model  {
      *
      * @var array
      */
-    protected $fillable = ['code', 'image_id', 'service_id', 'sub_service_id', 'parent_location_id', 'child_location_id', 'child_of_child_location_id', 'size_id', 'dimension', 'location', 'created_by'];
+    protected $fillable = [
+        'code',
+        'image_id',
+        'service_id',
+        'sub_service_id',
+        'parent_location_id',
+        'child_location_id',
+        'child_of_child_location_id',
+        'size_id',
+        'dimension',
+        'location',
+        'supplier_id',
+        'type_id',
+        'created_by'
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -94,6 +108,25 @@ class Billboard extends Model  {
     public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by', 'id')->withDefault();
+    }
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(Billboard_type::class, 'type_id', 'id');
+    }
+    public function size()
+    {
+        return $this->belongsTo(Size::class, 'size_id', 'id');
+    }
+
+    public function calendar()
+    {
+        return $this->hasMany(Billboard_calendar::class, 'billboard_id', 'id');
     }
 
 }

@@ -68,8 +68,10 @@
                         </div>
 
                         <div class="check-btns">
-                            <div class="tr-modal-popup">
-                                <a href="#camp-details{{$campaign->id}}" class="btn btn-color btn-md btn-animate" data-effect="mfp-zoom-in"><span>Campaign Items <i class="ion-checkmark"></i></span></a>
+                            <div >
+                                <a href="{{url('my-campaigns/details')}}/{{$campaign->id}}" class="btn btn-color btn-md btn-animate" data-effect="mfp-zoom-in">
+                                <span>Campaign Items <i class="ion-checkmark"></i></span></a>
+                                <!-- <a href="#camp-details{{$campaign->id}}" class="btn btn-color btn-md btn-animate" data-effect="mfp-zoom-in"><span>Campaign Items <i class="ion-checkmark"></i></span></a> -->
                             </div>
                         </div>
                     </div>
@@ -109,8 +111,8 @@
                                             <td><a href="{{url('serviceDetails/' . $item->billboard_id)}}">{{$item->requestedBillboard->code}}</a> </td>
                                             <td><span>{{$item->requestedBillboard->service->{'service_' . currentLang()}->title }}</span> </td>
                                             <td>
-                                                From: <span style="font-weight: bold" class="black">{{$item->starts}}</span><br>
-                                                To: <span style="font-weight: bold" class="black">{{$item->end}}</span><br>
+                                                From: <span style="font-weight: bold" class="black">{{$item->starts->format('d M Y')}}</span><br>
+                                                To: <span style="font-weight: bold" class="black">{{$item->end->format('d M Y')}}</span><br>
                                             </td>
                                             <td><span>{{$item->requestedBillboard->parentLocation->parentLocation_en->location}}</span> </td>
                                             <td><span>{{$item->requestedBillboard->childLocation->childLocation_en->location}}</span> </td>

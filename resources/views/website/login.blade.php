@@ -23,6 +23,17 @@
     <!--== Featured Product Start ==-->
     <section style="min-height: 350px">
         <div class="container">
+                        @if(Session::has('registermessage'))
+                <div class="alert-success w-100" style="">
+                    <h6>{{session('registermessage')}}</h6>
+                </div>
+            @endif
+                        @if(Session::has('error'))
+                <div class="alert alert-danger w-100" style="">
+                    <h6>{{session('error')}}</h6>
+                </div>
+            @endif
+
             <div class="row">
                 <!-- -------------------- Tabs --------------------------- -->
                 <div class="row mt-30 tabs-style-02" style="display: flex; flex-direction: row; justify-content: center">
@@ -39,7 +50,7 @@
                             <div class="tab-content text-center">
                                 <!-- -------------------- Login Tab --------------------------- -->
                                 <div role="tabpanel" class="tab-pane fade in active" id="login">
-                                    <form name="contact-form" action="{{ route('login') }}" method="POST" class="contact-form-style-01">
+                                    <form name="contact-form" action="{{ route('login.customer') }}" method="POST" class="contact-form-style-01">
                                         @csrf
                                         <div class="messages"></div>
                                         <div class="row">
@@ -80,28 +91,47 @@
 
                                 <!-- -------------------- Register Tab --------------------------- -->
                                 <div role="tabpanel" class="tab-pane fade" id="register">
-                                    <form name="contact-form" action="{{url('/register/customer')}}" method="POST" class="contact-form-style-01">
+                                    <form name="contact-form" action="{{route('register.customer')}}" method="POST" class="contact-form-style-01">
                                         @csrf
                                         <div class="messages"></div>
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label class="sr-only" for="email">Name</label>
-                                                    <input type="text" name="name" class="md-input" id="Name" placeholder="Name *" required data-error="Please Enter Valid Email">
-                                                    <div class="help-block with-errors"></div>
+                                                    <input type="text" name="name" class="md-input" id="Name" placeholder="Name *" required data-error="Please Enter Valid Email" value="{{old('name')}}">
+                                                    <div class="help-block with-errors">
+                                                        @if ($errors->has('name'))
+                                                            <span class="invalid-feedback">
+                                                                <strong>{{ $errors->first('name') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label class="sr-only" for="email">Email</label>
-                                                    <input type="email" name="email" class="md-input" id="email" placeholder="Email *" required data-error="Please Enter Valid Email">
-                                                    <div class="help-block with-errors"></div>
+                                                    <input type="email" name="email" class="md-input" id="email" placeholder="Email *" required data-error="Please Enter Valid Email" value="{{old('email')}}">
+                                                    <div class="help-block with-errors">
+                                                        @if ($errors->has('email'))
+                                                            <span class="invalid-feedback">
+                                                                <strong>{{ $errors->first('email') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label class="sr-only">Password</label>
                                                     <input type="password" name="password" class="md-input" id="subject-2" placeholder="Password *" required>
+                                                    <div class="help-block with-errors">
+                                                        @if ($errors->has('password'))
+                                                            <span class="invalid-feedback">
+                                                                <strong>{{ $errors->first('password') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -109,6 +139,11 @@
                                                 <div class="form-group">
                                                     <label class="sr-only">Confirm Password</label>
                                                     <input type="password" name="password_confirmation" class="md-input"  placeholder="Confirm Password" required>
+                                                    @if ($errors->has('password_confirmation'))
+                                                        <span class="invalid-feedback">
+                                                            <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                                        </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

@@ -1,8 +1,6 @@
 @extends('website.layouts.layouts')
 @section('title', 'Campaign')
-
 @section('content')
-
     <!--== Project Banner Start ==-->
     <section class="remove-padding cover-bg" style="background-image: url({{asset($billboard->image->path)}}); height: 80vh">
         <div class="container-fluid">
@@ -65,16 +63,19 @@
                                 </form>
                             </div>
                         </div>
-
                     </div>
-
-
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12 xs-mb-30">
                     <ul class="portfolio-meta">
+                        <li><span> Code </span> {{$billboard->code}}</li>
                         <li><span> Area </span> {{$billboard->parentLocation->parentLocation_en->location}}</li>
                         <li><span> Zone </span> {{$billboard->child_location_id ? $billboard->childLocation->childLocation_en->location : ''}}</li>
                         <li><span> Location </span> {{$billboard->child_of_child_location_id ? $billboard->childOfChildLocation->childOfChildLocation_en->location : ''}}</li>
+                        <li><span> Type </span>
+                            @if(!empty($billboard->type->type))
+                            {{$billboard->type->type}}
+                            @endif
+                        </li>
                         <li><span> Size </span> {{$billboard->billboardSize->size}}</li>
                         <li><span> Dimensions </span> {{$billboard->dimension}}</li>
                         <li><span> Faces </span> {{$billboard->faces}} Faces</li>

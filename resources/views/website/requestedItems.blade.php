@@ -2,6 +2,19 @@
 @section('title', 'Campaign')
 
 @section('customizedScript')
+
+<script>
+
+// function to add value input graft_save = 3 to change status
+
+$(document).ready(function() {
+    $('.Graft').click(function(){
+        $('#Graft').val('3');
+    });
+
+});
+
+</script>
 @endsection
 
 @section('content')
@@ -24,7 +37,7 @@
 
     <section>
         <div class="container">
-            @if($requestedCampaign)
+                        @if($requestedCampaign != null  )
 
             <div class="row">
                 <div class="col-md-12">
@@ -42,62 +55,26 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if($requestedCampaign)
-                                @foreach($requestedCampaign->campaignItems as $item)
+                            @if(@$requestedCampaign)
+                                @foreach(@$requestedCampaign->campaignItems as $item)
                                     <tr class="cart_item">
-                                        <td><a href="#" title="Remove this item"><i class="ion-ios-close-outline"></i></a> </td>
+                                        <td>
+                                            <div class="tr-modal-popup">
+                                                <a href="#details-popup{{$item->id}}" data-effect="mfp-zoom-in"  title="Remove this item" class="btn-shopping btn-light btn-md btn-square btn " type="button" ><i class="ion-ios-close-outline"></i></a>
+                                            </div>
+                                        </td>
                                         <td><a href="{{url('serviceDetails/' . $item->billboard_id)}}"> <img src="{{asset($item->requestedBillboard->image->path)}}" alt=""> </a> </td>
                                         <td><a href="{{url('serviceDetails/' . $item->billboard_id)}}">{{$item->requestedBillboard->code}}</a> </td>
-                                        <td><span>{{$item->requestedBillboard->service->{'service_' . currentLang()}->title }}</span> </td>
+                                        <td><span>{{@$item->requestedBillboard->service->{'service_' . currentLang()}->title }}</span> </td>
                                         <td>
-                                            From: <span style="font-weight: bold" class="black">{{$item->starts}}</span><br>
-                                            To: <span style="font-weight: bold" class="black">{{$item->end}}</span><br>
+                                            From: <span style="font-weight: bold" class="black">{{@$item->starts->format('d M Y')}}</span><br>
+                                            To: <span style="font-weight: bold" class="black">{{@$item->end->format('d M Y')}}</span><br>
                                         </td>
                                         <td><span>{{$item->requestedBillboard->parentLocation->parentLocation_en->location}}</span> </td>
                                         <td><span>{{$item->requestedBillboard->childLocation->childLocation_en->location}}</span> </td>
                                     </tr>
                                 @endforeach
                             @endif
-                            {{--<tr class="cart_item">
-                                <td><a href="#" title="Remove this item"><i class="ion-ios-close-outline"></i></a> </td>
-                                <td><a href="serviceDetails.html"> <img src="assets/images/services/Picture1.png" alt=""> </a> </td>
-                                <td><a href="serviceDetails.html">#RMF008</a> </td>
-                                <td><span>Billboard</span> </td>
-                                <td>
-                                    From: <span style="font-weight: bold" class="black">July 2019</span><br>
-                                    To: <span style="font-weight: bold" class="black">December 2019</span><br>
-                                </td>
-                                <td><span>Greater Cairo</span> </td>
-                                <td><span>Ramsees</span> </td>
-                            </tr>
-
-                            <tr class="cart_item">
-                                <td><a href="#" title="Remove this item"><i class="ion-ios-close-outline"></i></a> </td>
-                                <td><a href="serviceDetails.html"> <img src="assets/images/services/Picture3.png" alt=""> </a> </td>
-                                <td><a href="serviceDetails.html">#SDF52</a> </td>
-                                <td><span>Landmark</span> </td>
-                                <td>
-                                    From: <span style="font-weight: bold" class="black">August 2019</span><br>
-                                    To: <span style="font-weight: bold" class="black">December 2019</span><br>
-                                </td>
-                                <td><span>Greater Cairo</span> </td>
-                                <td><span>Abbasya</span> </td>
-                            </tr>
-
-                            <tr class="cart_item">
-                                <td><a href="#" title="Remove this item"><i class="ion-ios-close-outline"></i></a> </td>
-                                <td><a href="serviceDetails.html"> <img src="assets/images/services/Picture2.png" alt=""> </a> </td>
-                                <td><a href="serviceDetails.html">#MOSI55</a> </td>
-                                <td><span>Billboard</span> </td>
-                                <td>
-                                    From: <span style="font-weight: bold" class="black">November 2019</span><br>
-                                    To: <span style="font-weight: bold" class="black">February 2020</span><br>
-                                </td>
-                                <td><span>Giza</span> </td>
-                                <td><span>23 July Axis</span> </td>
-                            </tr>--}}
-
-
                             </tbody>
                         </table>
                     </div>
@@ -147,14 +124,22 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-12" style="display: flex; flex-direction: row; justify-content: center">
+                                <div class="col-md-6" style="display: flex; flex-direction: row; justify-content: center">
                                     <div class="summary-cart no-border">
                                         <div class="check-btns">
                                             <button type="submit" class="btn btn-color btn-md btn-animate"><span>Send Request <i class="ion-checkmark"></i></span></button>
                                         </div>
                                     </div>
                                 </div>
-
+                                
+                                 <input type="hidden" name="Graft" value="" id="Graft">
+                                <div class="col-md-6" style="display: flex; flex-direction: row; justify-content: center">
+                                    <div class="summary-cart no-border">
+                                        <div class="check-btns">
+                                            <button type="submit" class="btn btn-color btn-md btn-animate Graft"><span>Save As Graft <i class="ion-checkmark"></i></span></button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -167,6 +152,23 @@
 
         </div>
     </section>
+
+
+    @if($requestedCampaign)
+        @foreach($requestedCampaign->campaignItems as $item)
+            <div id="details-popup{{$item->id}}" class="tesauth  white-bg all-padding-30 mfp-with-anim mfp-hide centerize-col col-lg-4 col-md-6 col-sm-7 col-xs-11 text-center">
+                <span class="text-uppercase font-25px font-600 mb-10 display-block dark-color">Remove Item</span>
+                <p class="mb-20">Are You Sure You Want To Remove Item with code <strong>#525255</strong> From Request List.</p>
+                <form action="{{url('show-requested-items/'. $item->id .'/destroy')}}" method="post">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="btn btn-lg btn-circle btn-danger">Remove</button>
+                </form>
+
+                <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+            </div>
+        @endforeach
+    @endif
     <!--== Products End ==-->
 
 

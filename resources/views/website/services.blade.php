@@ -73,7 +73,7 @@
                 <div class="col-md-9 col-sm-9 col-xs-12 xs-mb-50">
                     @if(count($billboards) > 0)
                         @foreach($billboards as $billboard)
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                                 <div class="product-item tr-products">
                                     <div class="product-image tr-product-thumbnail">
                                         <a href="{{url('serviceDetails')}}/{{$billboard->id}}">
@@ -81,10 +81,13 @@
                                         </a>
                                         <div class="product-action">
                                         </div>
-                                        <div class="wrap-label">
-                                            <span class="label-product new-label">New</span>
-                                            <!--<span class="label-product sale-label">-50%</span>-->
-                                        </div>
+                                        @if($billboard->created_at >= \Carbon\Carbon::today())
+                                            <div class="wrap-label">
+                                                <span class="label-product new-label">New</span>
+                                                <!--<span class="label-product sale-label">-50%</span>-->
+                                            </div>
+                                        @endif
+
                                     </div>
                                     <div class="tr-product-content">
                                         <h4><a href="{{url('serviceDetails')}}/{{$billboard->id}}" class="tr-product-title" title="Stitchout Boot">{{@$buildCamp->service_en->title}}</a></h4>
@@ -160,6 +163,21 @@
                     </form>
                 </div>
             </div>
+            <div class="row mt-100">
+                <div class="col-md-12">
+                    <div class="text-center">
+                        <div class="pagination text-uppercase dark-color">
+                            <ul>
+                                <li><a href="{{$billboards->previousPageUrl()}}"><i class="icofont icofont-long-arrow-left mr-5 xs-display-none"></i> Prev</a></li>
+                                @for($i=1; $i <= $billboards->lastPage(); $i++)
+                                    <li class="{{$i == $billboards->currentPage() ? 'active' : ''}}"><a href="?page={{$i}}">{{$i}}</a></li>
+                                @endfor
+                                <li><a href="{{$billboards->nextPageUrl()}}">Next <i class="icofont icofont-long-arrow-right ml-5 xs-display-none"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="details-popup" class="white-bg all-padding-30 mfp-with-anim mfp-hide centerize-col col-lg-4 col-md-6 col-sm-7 col-xs-11 text-center">
@@ -200,9 +218,9 @@
     </section>
     <!--== Featured Product End ==-->
 
-  
 
 
-  
+
+
 
 @endsection

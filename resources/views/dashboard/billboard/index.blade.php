@@ -87,6 +87,7 @@
                                     <td>
                                         <a href="{{route('billboard.edit', $billboard->id)}}" class style="font-size: 20px"><i class="fa fa-pencil-square-o"></i> </a>
                                         <a href="{{adminUrl('billboard/'. $billboard->id .'/images')}}" class style="font-size: 20px"><i class="fa fa-image" title="Show Billboard Images"></i> </a>
+                                        <a href="{{adminUrl('billboard/'. $billboard->id .'/calendar')}}" class style="font-size: 20px"><i class="fa fa-calendar" title="Show Billboard Calendar"></i> </a>
                                         <a href="{{adminUrl('billboard/'. $billboard->id)}}" class style="font-size: 20px"><i class="fa fa-eye" title="Show Billboard"></i> </a>
                                         <button type="button" class data-toggle="modal" data-target="#delete{{$billboard->id}}" style="font-size: 20px">
                                             <i class="fa fa-trash"></i>

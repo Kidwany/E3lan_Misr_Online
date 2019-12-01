@@ -60,6 +60,10 @@
                                             <td>{{$billboard->id}}</td>
                                         </tr>
                                         <tr>
+                                            <td><strong>Code</strong> </td>
+                                            <td>{{$billboard->code}}</td>
+                                        </tr>
+                                        <tr>
                                             <td><strong>Name</strong> </td>
                                             <td>{{$billboard->billboard_en->name}}</td>
                                         </tr>
@@ -90,6 +94,14 @@
                                         <tr>
                                             <td><strong>Size</strong></td>
                                             <td>{{$billboard->billboardSize->size}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Billboard Type</strong></td>
+                                            <td>{{$billboard->type_id ? $billboard->type->type : ''}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Billboard Supplier</strong></td>
+                                            <td>{{$billboard->supplier_id ? $billboard->supplier->supplier : ''}}</td>
                                         </tr>
                                         <tr>
                                             <td><strong>Dimensions</strong></td>

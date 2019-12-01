@@ -116,7 +116,7 @@
                     <div class="col-md-4 col-sm-4 col-xs-12 xs-mb-30 wow fadeInRight" data-wow-delay="0.1s">
                         <h4 class="mb-0">{{@$service->service_en->title}}</h4>
                         <hr class="left-line default-bg">
-                        <p>{{@$service->service_en->description}}</p>
+                        <p style="height: 70px;">{{@$service->service_en->description}}</p>
                         <a class="btn btn-md btn-color btn-animate btn-square mt-20" href="{{url('services?parentService=' . $service->id)}}"><span>See More <i class="tr-icon icofont icofont-arrow-right"></i></span></a>
                     </div>
                 @endforeach
@@ -125,7 +125,6 @@
     </section>
     <!--== Services ==-->
     <section style="background-image: url({{assetPath('website/assets/images/background/pattern-bg-dark.jpg')}});">
-
         <div class="container">
             <div class="row">
                 <div class="col-md-6 parallax-content">
@@ -149,13 +148,11 @@
     </section>
     <!--== Video End ==-->
 
-    <br><br><br><br><br>
-
     <!--== Features ==-->
     <section class="remove-padding white-bg">
         <div class="container-fluid">
             <div class="row row-flex">
-                <div class="col-md-4">
+                <div class="col-md-4 col-xs-12">
                     <div class="col-inner spacer default-bg wow fadeInUp" data-wow-delay="0.1s">
                         <div class="text-center white-color">
                             <i class="icofont icofont-billboard font-40px white-icon"></i>
@@ -164,7 +161,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-xs-12">
                     <div class="col-inner spacer dark-bg wow fadeInUp" data-wow-delay="0.2s">
                         <div class="text-center white-color">
                             <i class="icofont icofont-sand-clock font-40px white-icon"></i>
@@ -173,7 +170,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-xs-12">
                     <div class="col-inner spacer secondary-bg wow fadeInUp" data-wow-delay="0.3s">
                         <div class="text-center white-color">
                             <i class="icofont icofont-diamond font-40px white-icon"></i>
@@ -187,9 +184,7 @@
     </section>
     <!--== Features ==-->
 
-
     <!--== Subscribe Start ==-->
-    <br><br><br><br><br>
     <section class="pt-80 pb-80 dark-bg">
         <div class="container">
             <div class="row mt-50">

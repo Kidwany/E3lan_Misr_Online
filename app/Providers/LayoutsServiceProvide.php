@@ -39,6 +39,10 @@ class LayoutsServiceProvide extends ServiceProvider
                 'website.requestedItems',
                 'website.myCampaigns',
                 'website.login',
+                'website.myCampaigns_details',
+                'website.product',
+                'website.campaignDate',
+                'website.graft_save',
             ],
             LayoutsComposer::class
         );

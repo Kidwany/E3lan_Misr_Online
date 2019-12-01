@@ -43,8 +43,8 @@
 
 		/* ===== PRELOADER  ===== */
 
-		      $("#loader-overlay").delay(1500).fadeOut();
-	        $(".loader").delay(2000).fadeOut("slow");
+		      $("#loader-overlay").delay(500).fadeOut();
+	        $(".loader").delay(1000).fadeOut("slow");
 
 	        $(window).trigger("scroll");
 	        $(window).trigger("resize");
@@ -662,6 +662,11 @@
 	  $('#search-button').on('click', function () {
 	 	$("div.fullscreen-search-overlay").addClass("fullscreen-search-overlay-show");
 	  });
+
+        $('#search-button-mobile').on('click', function () {
+            $("div.fullscreen-search-overlay").addClass("fullscreen-search-overlay-show");
+        });
+
 	  $('a.fullscreen-close').on('click', function () {
 		$("div.fullscreen-search-overlay").removeClass("fullscreen-search-overlay-show");
 	  });

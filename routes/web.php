@@ -26,7 +26,7 @@ Route::group(['middleware' => ['Maintenance', 'Lang']], function () {
 //    Route::get('register','UserController@register')->name('register');
 
     /*=======   Return Home     ========*/
-    Route::get('/', 'WebsitePagesController@index')->name('home');
+    Route::get('/', 'WebsitePagesController@index')->name('homepage');
 
     Route::get('/search', 'WebsitePagesController@search')->name('search');
 
@@ -54,7 +54,9 @@ Route::group(['middleware' => ['Maintenance', 'Lang']], function () {
 
     /*=======   Return buildCamp     ========*/
 
-    Route::get('/buildCamp', 'WebsitePagesController@buildCamp');
+    Route::get('/buildCamp', 'WebsitePagesController@buildCamp')->name('buildCamp');
+    Route::get('/campaign-date', 'WebsitePagesController@campaignDate');
+    Route::post('/store-campaign-date', 'WebsitePagesController@storeCampaignDate');
     Route::get('/serviceDetails/{id}', 'WebsitePagesController@service_details');
     Route::post('/add/buildCamp', 'WebsitePagesController@add_buildCamp');
 
@@ -65,19 +67,36 @@ Route::group(['middleware' => ['Maintenance', 'Lang']], function () {
     Route::get('/child_of_child_location/{id}', 'WebsitePagesController@child_of_child_location');
 
     /*======== Filter ========*/
-    Route::post('/filter', 'WebsitePagesController@filter');
+    // Route::post('/filter', 'WebsitePagesController@filter');
+    Route::get('/filter/{parent?}/{child?}/{child_of_child?}/{size?}', 'WebsitePagesController@filter');
 
     /*======== Add To Campaign ========*/
     Route::post('/add-to-campaign', 'WebsitePagesController@addToCampaign');
 
     /*======== show Requested Items ========*/
     Route::get('/show-requested-items', 'WebsitePagesController@showRequestedItems');
+    
+    /*======== show Requested Items Save graft ========*/
+    Route::get('/Show-SaveGraft-Items', 'WebsitePagesController@showgraft_saveItems');
 
     /*======== Submit Request ========*/
     Route::post('submit-campaign-request', 'WebsitePagesController@submitCampaignRequest');
 
     /*======== My Campaigns ========*/
     Route::get('my-campaigns', 'WebsitePagesController@myCampaigns');
+    Route::get('my-campaigns/details/{id}', 'WebsitePagesController@myCampaigns_details');
+
+    /*======== Delete Item From List =======*/
+    Route::delete('show-requested-items/{id}/destroy', 'WebsitePagesController@deleteItemFromRequestCampaignList');
+    
+    
+     /*=======   Return portofolio with categories    ========*/
+     Route::get('/portfolio', 'CategoryController@index');
+    /*=======   Return subcategories of category    ========*/
+     Route::get('/getSubCategoryByid/{id}','CategoryController@getsubbyid')->name('getSubCategoryByid');
+
+     Route::get('/product/{id}/{cat_id}','CategoryController@getProduct')->name('product');
+
 
 });
 
@@ -88,10 +107,11 @@ Route::get('maintenance', function () {
     return 'maintenance';
 });
 
-Route::post('register/customer','UserController@register')->name('register');
-Route::post('login/customer','UserController@login')->name('login');
-Route::get('login/customer','UserController@loginPage')->name('login');
+Route::post('register/customer','UserController@register')->name('register.customer');
+Route::post('login/customer','UserController@login')->name('login.customer');
+Route::get('login/customer','UserController@loginPage')->name('login.customer');
 Route::get('logout/customer','UserController@logout')->name('logout');
+Route::get('/verify/{activation_code?}', 'UserController@verify')->name('verify');
 
 
 

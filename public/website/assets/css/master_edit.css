@@ -1,0 +1,7 @@
+.service-slider-2 .slick-prev, .service-slider-2 .slick-next, .blog-grid-slider .slick-prev, .blog-grid-slider .slick-next {
+    border: 2px solid rgba(88, 34, 34, 0.7);
+    width: 50px;
+    height: 50px;
+    color: #564545;
+    border-radius: 100px;
+}

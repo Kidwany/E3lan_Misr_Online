@@ -42,7 +42,7 @@ class ChildLocationController extends Controller
     {
         $request->validate([
             'location'               => 'required',
-            'letter'               => 'required',
+            // 'letter'               => 'required',
         ], [], [
         ]);
 
@@ -92,7 +92,7 @@ class ChildLocationController extends Controller
 
         $request->validate([
             'location'               => 'required',
-            'letter'                 => 'required',
+            // 'letter'                 => 'required',
         ], [], [
         ]);
         $location->parent_location_id = \request('parent_location_id');

@@ -77,7 +77,7 @@
                                 <tr>
                                     <td>{{$client->id}}</td>
                                     <td><img src="{{$client->image_id ? asset($client->image->path) : asset('dashboard/img/picture.png')}}" style="width: 50px" alt="slide image" > </td>
-                                    <td>{{$client->client_en->name}}</td>
+                                    <td>{{@$client->client_en->name}}</td>
                                     <td>{{$client->createdBy->name}}</td>
                                     <td>{{$client->created_at ? $client->created_at->diffForHumans() : ''}}</td>
                                     <td>{{$client->updated_at ? $client->updated_at->diffForHumans() : ''}}</td>
@@ -105,7 +105,7 @@
                                             <h4 class="modal-title">Delete Client</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Are You Sure You Want To Delete Client <strong>{{$client->client_en->name}}</strong></p>
+                                            <p>Are You Sure You Want To Delete Client <strong>{{@$client->client_en->name}}</strong></p>
                                         </div>
                                         <div class="modal-footer">
                                             <form action="{{route('client.destroy', $client->id)}}" method="post">

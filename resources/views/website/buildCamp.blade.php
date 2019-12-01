@@ -17,7 +17,9 @@
                         success: function (data) {
                             $('#childLocation').empty();
                             $('#childOfChildLocation').empty();
+                            $('#childLocation').append('<option value="">'+ " All Zone" +'</option>');
                             $.each(data, function (key, value) {
+                                
                                 $('#childLocation').append('<option value="' + value.id +'">'+ value.child_location_en.location +'</option>')
 
                             })
@@ -26,7 +28,7 @@
                 }
             });
 
-            $('#childLocation').on('click', function () {
+            $('#childLocation').on('change', function () {
                 var childId = $(this).val();
                 //alert(childId);
                 if (childId)
@@ -75,23 +77,29 @@
                 <div class="col-md-9 col-sm-9 col-xs-12 xs-mb-50">
                     @if(count($billboards) > 0)
                         @foreach($billboards as $billboard)
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="product-item tr-products">
                                     <div class="product-image tr-product-thumbnail">
                                         <a href="{{url('serviceDetails')}}/{{$billboard->id}}">
                                             <img class="img-responsive" src="{{asset($billboard->image->path)}}" alt="torneo-product"/>
                                         </a>
                                         <div class="product-action">
-                                            <div class="tr-modal-popup">
-                                                <a href="#details-popup{{$billboard->id}}" data-effect="mfp-zoom-in" class="btn-shopping btn-light btn-md btn-square btn checkauth" type="button" value="Add to Cart">
-                                                    <i class="icofont icofont-mega-phone"></i> <span>Add to Campaign </span>
-                                                </a>
+                                            <form action="{{url('add-to-campaign')}}" method="POST">
+                                                @method('POST')
+                                                @csrf
+                                               
+                                                <input type="hidden" name="code" value="{{@$billboard->id}}">
+                                                <input type="hidden" name="start" value="{{@$start}}">
+                                                <input type="hidden" name="end" value="{{@$end}}">
+                                                <button class="btn-shopping btn-light btn-md btn-square btn checkauth" value="Add to Cart"><i class="icofont icofont-mega-phone"></i><span>Add to Campaign </span></button>
+                                            </form>
+                                        </div>
+                                        @if($billboard->created_at >= \Carbon\Carbon::today())
+                                            <div class="wrap-label">
+                                                <span class="label-product new-label">New</span>
+                                                <!--<span class="label-product sale-label">-50%</span>-->
                                             </div>
-                                        </div>
-                                        <div class="wrap-label">
-                                            <span class="label-product new-label">New</span>
-                                            <!--<span class="label-product sale-label">-50%</span>-->
-                                        </div>
+                                        @endif
                                     </div>
                                     <div class="tr-product-content">
                                         <h4><a href="{{url('serviceDetails')}}/{{$billboard->id}}" class="tr-product-title" title="Stitchout Boot">{{@$buildCamp->service_en->title}}</a></h4>
@@ -107,9 +115,9 @@
                     @endif
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
-                    <form action="{{url('filter')}}" method="post">
-                        @csrf
-                        @method('post')
+                    <form action="{{url('filter')}}" method="get">
+                        <!--@csrf-->
+                        @method('get')
                         <!-- Parent Location -->
                         <div class="widget sidebar_widget">
                             <h5 class="aside-title text-uppercase">Choose Area</h5>
@@ -164,6 +172,22 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+            <div class="row mt-100">
+                <div class="col-md-12">
+                    <div class="text-center">
+                        <div class="pagination text-uppercase dark-color">
+                            <ul>
+                                {!! $billboards->appends(request()->except('page'))->links() !!}
+                                <!--<li><a href="{{@$billboards->previousPageUrl()}}"><i class="icofont icofont-long-arrow-left mr-5 xs-display-none"></i> Prev</a></li>-->
+                                <!--@for($i=1; $i <= $billboards->lastPage(); $i++)-->
+                                <!--    <li class="{{$i == $billboards->currentPage() ? 'active' : ''}}"><a href="?page={{$i}}">{{$i}}</a></li>-->
+                                <!--@endfor-->
+                                <!--<li><a href="{{@$billboards->nextPageUrl()}}">Next <i class="icofont icofont-long-arrow-right ml-5 xs-display-none"></i></a></li>-->
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

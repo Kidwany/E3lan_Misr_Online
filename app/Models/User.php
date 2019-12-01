@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Mail;
+use Auth;
 
 class User extends Model implements AuthenticatableContract  {
 
@@ -44,5 +46,22 @@ class User extends Model implements AuthenticatableContract  {
      * @var array
      */
     protected $dates = ['email_verified_at'];
+
+
+    public function sendActivationMail(){
+        
+        $data = ['user'=>$this];
+
+        Mail::send(['html' => 'email.welcomeEmail'], $data, function ($message) {
+            $message
+                ->to($this->email, $this->name)
+                ->subject('E3lan Misr activation mail');
+            $message
+                ->from('hs-test@pbc-egy.com','H&S');
+
+        });
+
+    }
+
 
 }

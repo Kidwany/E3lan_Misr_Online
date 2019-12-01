@@ -63,11 +63,11 @@
                                     <p class="help-block"> Choose Area for this Zone</p>
                                 </div>
 
-                                <div class="col-lg-2">
+                                <!-- <div class="col-lg-2">
                                     <label for="exampleInputEmail1"> Zone Letter</label>
                                     <input type="text" class="form-control" name="letter" id="exampleInputEmail1" placeholder="Enter Letter" value="{{$location->letter}}">
                                     <p class="help-block">Enter letter</p>
-                                </div>
+                                </div> -->
 
                             </div>
                         </div>

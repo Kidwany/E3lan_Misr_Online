@@ -42,7 +42,7 @@ class SuppliersController extends Controller
         $request->validate([
             'supplier'            => 'required',
             'owner'               => 'required',
-            'letter'              => 'required|max:5',
+            'letter'              => 'required|max:5|unique:supplier',
         ], [], [
         ]);
 

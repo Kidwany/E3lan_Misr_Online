@@ -5,7 +5,7 @@ input[type=checkbox]
 
 .tr-products .tr-product-thumbnail>a img
 {
-    height: 300px;
+    height: 260px;
     object-position: center center;
     object-fit: cover;
 }
@@ -13,4 +13,47 @@ input[type=checkbox]
 .summary-cart
 {
     border-left: none;
+}
+
+.desktop-hidden
+{
+    display: none !important;
+}
+
+
+
+.mobile-navbar
+{
+    display: none !important;
+}
+
+
+@media (max-width: 992px)
+{
+    .desktop-hidden
+    {
+        display: block !important;
+    }
+
+    .mobile-hidden
+    {
+        display: none !important;
+    }
+
+    .mobile-navbar
+    {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #search-button-mobile
+    {
+        background-color: transparent;
+        margin-right: 10px;
+        border: none;
+        margin-top: 14px;
+        font-size: 18px;
+    }
+
 }

@@ -129,6 +129,14 @@
 <!-- CK Editor -->
 <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
 
+<!-- GoogleMap purposes -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.4/jstree.min.js"></script>
+<script src="{{url('dashboard')}}/GoogleMap/map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ67H5QBLVTdO2pnmEmC2THDx95rWyC1g&libraries=places&callback=initAutocomplete" async defer></script>
+
+<!-- End GoogleMap -->
+
 @yield('customizedScript')
 
 </body>

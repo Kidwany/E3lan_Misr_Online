@@ -67,6 +67,19 @@
                 <ul class="treeview-menu">
                     <li><a href="{{adminUrl('billboard/create')}}"><i class="fa fa-plus"></i> Add Billboard</a></li>
                     <li><a href="{{adminUrl('billboard')}}"><i class="fa fa-edit"></i> Show / Edit Billboard</a></li>
+                    <!--<li><a href="{{adminUrl('billboard/map')}}"><i class="fa fa-edit"></i> Maps Billboard</a></li>-->
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-flag"></i>
+                    <span>Billboards Types</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{adminUrl('billboard-type/create')}}"><i class="fa fa-plus"></i> Add Billboard Type</a></li>
+                    <li><a href="{{adminUrl('billboard-type')}}"><i class="fa fa-edit"></i> Show / Edit Billboard Type</a></li>
                 </ul>
             </li>
 
@@ -91,6 +104,17 @@
                 <ul class="treeview-menu">
                     <li><a href="{{adminUrl('supplier/create')}}"><i class="fa fa-plus"></i> Add Supplier</a></li>
                     <li><a href="{{adminUrl('supplier')}}"><i class="fa fa-edit"></i> Show / Edit Supplier</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-hospital-o"></i>
+                    <span>Letter Location</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{adminUrl('letter-location/create')}}"><i class="fa fa-plus"></i> Add Letter Location</a></li>
+                    <li><a href="{{adminUrl('letter-location')}}"><i class="fa fa-edit"></i> Show / Edit Letter Location</a></li>
                 </ul>
             </li>
 

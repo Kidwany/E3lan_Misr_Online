@@ -13,10 +13,16 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $clients = Client::all()->count();
-        $messages = Message::all()->count();
-        $projects = Project::all()->count();
+       
+        if(\Auth::user()->custom_id == 1){
+            $clients = Client::all()->count();
+            $messages = Message::all()->count();
+            $projects = Project::all()->count();
         //$members = Team::all()->count();
         return view('dashboard.welcome', compact('clients', 'messages', 'projects'));
+
+        }else{
+             return redirect()->route('homepage')->with('message', 'This account activated !');
+        }
     }
 }
